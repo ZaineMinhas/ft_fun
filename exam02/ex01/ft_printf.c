@@ -6,7 +6,7 @@
 /*   By: zminhas <zminhas@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 13:03:24 by zminhas           #+#    #+#             */
-/*   Updated: 2021/10/22 13:45:08 by zminhas          ###   ########.fr       */
+/*   Updated: 2021/10/22 15:59:57 by zminhas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,14 @@ int	intlen(int nb)
 	return (++len);
 }
 
-void	ft_putnbr(int nb)
+void	ft_putnbr(unsigned int nb)
 {
-	if (nb < 0)
-	{
-		nb *= -1;
-		ft_putchar('-');
-	}
 	if (nb > 9)
 		ft_putnbr(nb / 10);
 	ft_putchar('0' + nb % 10);
 }
 
-int	hexlen(int nb)
+int	hexlen(unsigned int nb)
 {
 	int len;
 
@@ -100,7 +95,16 @@ int	percent_x(unsigned int nb, char *base)
 
 int	percent_d(int nb)
 {
-	ft_putnbr(nb);
+	unsigned int	n;
+
+	if (nb < 0)
+	{
+		n = (unsigned int)-nb;
+		ft_putchar('-');
+	}
+	else
+		n = nb;
+	ft_putnbr(n);
 	return (intlen(nb));
 }
 
@@ -159,9 +163,13 @@ int	ft_printf(const char *format, ...)
 
 
 /*#include <stdio.h>
+#include <limits.h>
 
 int	main(void)
 {
-	printf("\nlen = %d\n", printf("salut c'est %x", -256256));
-	printf("\nfake len = %d\n", ft_printf("salut c'est %x", -256256));
+	printf("\nlen = %d\n", printf("sa%xlut c'est %s", -1, "fanta"));
+	printf("\nfake len = %d\n", ft_printf("sa%xlut c'est %s", -1, "Fanta"));
+	return (0);
 }*/
+
+// clear && c ft_printf.c && ./a.out
