@@ -6,7 +6,7 @@
 /*   By: zminhas <zminhas@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 12:43:08 by zminhas           #+#    #+#             */
-/*   Updated: 2021/10/22 12:50:37 by zminhas          ###   ########.fr       */
+/*   Updated: 2021/10/23 16:30:29 by zminhas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int ac, char **av)
 		j = -1;
 		while (av[2][++j])
 		{
-			if (av[1][i] == av[2][i] && !was_in(av[1], i))
+			if (av[1][i] == av[2][j] && !was_in(av[1], i))
 				bool = 1;
 		}
 		if (bool)
