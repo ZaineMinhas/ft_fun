@@ -57,7 +57,6 @@ char	*gnljoin(char *str1, char *str2)
 	while (str2[++size])
 		dest[i + size] = str2[size];
 	dest[i + size] = 0;
-	//printf("dest = |%s|\n", dest);
 	if (str1)
 		free(str1);
 	return (dest);
@@ -146,6 +145,7 @@ char	*get_next_line(int fd)
 		save = gnljoin(save, buff);
 	}
 	free(buff);
+	printf("|%s|", save);
 	if (!reader)
 	{
 		if (save)
@@ -154,8 +154,6 @@ char	*get_next_line(int fd)
 	}
 	line = get_line(save);
 	save = get_after_line(save);
-	//printf("line = |%s|\n", save);
-	//printf("salut\n");
 	return (line);
 }
 
