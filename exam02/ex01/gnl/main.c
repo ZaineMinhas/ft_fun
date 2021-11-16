@@ -6,7 +6,7 @@
 /*   By: zminhas <zminhas@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 18:56:31 by zminhas           #+#    #+#             */
-/*   Updated: 2021/11/10 17:40:20 by zminhas          ###   ########.fr       */
+/*   Updated: 2021/11/16 18:48:49 by zminhas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ int main(void)
 	char	*str;
 	int	fd;
 
-	fd = open("text.txt", O_RDONLY);
+	//fd = open("text.txt", O_RDONLY);
+	fd = 0;
 	while ((str = get_next_line(fd)))
 	{
-		//printf("%s", str);
+		printf("%s", str);
 		free(str);
 	}
 	close(fd);

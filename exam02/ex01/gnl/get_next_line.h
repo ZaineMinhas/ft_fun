@@ -5,12 +5,14 @@
 #  define BUFFER_SIZE 32
 # endif
 
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <sys/uio.h>
 # include <sys/types.h>
+# include <sys/uio.h>
+# include <unistd.h>
+# include <unistd.h>
+# include <stdlib.h>
 
-char	*get_next_line(int fd);
+# include <stdio.h>
+
+char    *get_next_line(int fd);
 
 #endif
