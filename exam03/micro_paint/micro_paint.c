@@ -25,10 +25,10 @@ void	print_draw(char **str, t_zone var)
 	int	i;
 	int	j;
 
-	i = -1;
+	i = 0;
 	while (++i < var.W)
 	{
-		j = -1;
+		j = 0;
 		while (++j < var.H)
 			write(1, &str[j][i], 1);
 		write(1, "\n", 1);
@@ -92,7 +92,7 @@ int		in_rec(int x, int y, t_rec rec)
 {
 	if (x < rec.x || y < rec.y || x > rec.x + rec.widht || y > rec.y + rec.height)
 		return (0);
-	if (x - rec.x < 1 || rec.x - x < 1 || y - rec.y < 1 || rec.y - y < 1)
+	if (x - rec.x < 1 || rec.widht + rec.x - x < 1 || y - rec.y < 1 || rec.height + rec.y - y < 1)
 		return (2);
 	return (1);
 }
