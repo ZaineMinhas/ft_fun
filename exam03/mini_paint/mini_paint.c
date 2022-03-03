@@ -168,10 +168,10 @@ int main(int ac, char **av)
 	zone.W = 0;
 	to_draw = NULL;
 	if (!(to_draw = init_zone(&zone, file)))
-		return (clear_all(file, to_draw, zone, NULL));
+		return (clear_all(file, to_draw, zone, "Error: Operation file corrupted\n"));
 	printf("%d %d %c\n", zone.W, zone.H, zone.c);
 	if (!draw_circle(to_draw, file, zone))
-		return (clear_all(file, to_draw, zone, NULL));
+		return (clear_all(file, to_draw, zone, "Error: Operation file corrupted\n"));
 	print_draw(to_draw, &zone);
 	clear_all(file, to_draw, zone, NULL);
 	return (0);
