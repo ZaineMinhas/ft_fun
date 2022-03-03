@@ -29,7 +29,7 @@ void	print_draw(char **tab, t_zone *zone)
 	{
 		j = -1;
 		while (++j < zone->W)
-			write(1, &tab[i][j], 1);
+			write(1, &tab[j][i], 1);
 		write(1, "\n", 1);
 	}
 }
