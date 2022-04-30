@@ -6,7 +6,7 @@
 /*   By: zminhas <zminhas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 17:48:23 by zminhas           #+#    #+#             */
-/*   Updated: 2022/04/30 16:58:04 by zminhas          ###   ########.fr       */
+/*   Updated: 2022/04/30 17:01:23 by zminhas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ int	main(int ac, char **av)
 {
 	if (ac != 2)
 		return (return_error());
-	canon_maker	make(av[2]);
+	canon_maker	make(av[1]);
 	if (make.canon())
 		return (return_error());
 	return (0);
 }
 
-// la commande : c++ -Wall -Werror -Wextra main.cpp canon_maker.cpp
+// la commande : c++ -Wall -Werror -Wextra main.cpp canon_maker.cpp; mv a.out canon_maker
