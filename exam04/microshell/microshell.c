@@ -13,11 +13,9 @@ void	ft_error(char *str1, char *str2)
 {
 	write(2, str1, ft_strlen(str1));
 	if(str2)
-	{
 		write(2, str2, ft_strlen(str2));
-		write(2, "\n", 1);
-	}
-	exit (0);
+	write(2, "\n", 1);
+	exit (1);
 }
 
 char	**sub_argv(char **argv, int start, int end)
@@ -39,7 +37,7 @@ int	main(int argc, char **argv, char **env)
 
 	while (i < argc)
 	{
-		pos = end = start = i;
+		pos = start = i;
 		while (pos < argc && strcmp(argv[pos], ";"))
 			pos++;
 		fd_in = 0;
@@ -50,16 +48,16 @@ int	main(int argc, char **argv, char **env)
 				end++;
 			av = sub_argv(argv, start, end);
 			if (pipe(fd) == -1)
-				ft_error("error: fatal\n", NULL);
+				ft_error("error: fatal", NULL);
 			pid = fork();
 			if (pid == -1)
-				ft_error("error: fatal\n", NULL);
+				ft_error("error: fatal", NULL);
 			else if (!pid)
 			{
 				if (dup2(fd_in, 0) == -1)
-					ft_error("error: fatal\n", NULL);
+					ft_error("error: fatal", NULL);
 				if (end < pos && dup2(fd[1], 1) == -1)
-					ft_error("error: fatal\n", NULL);
+					ft_error("error: fatal", NULL);
 				close(fd_in);
 				close(fd[0]);
 				close(fd[1]);
