@@ -63,17 +63,8 @@ void	uninstall(size_t nb_frame)
 	script.close();
 }
 
-int	main(int ac, char **av)
+void	print_flipnote(size_t nb_frame, int ac, char **av)
 {
-	if ((ac != 2 && ac != 3) || !valid_args(av[1]))
-		return (return_error());
-
-	std::string	file(av[1]);
-	size_t	nb_frame = count_frame(file);
-
-	stock_frame(file, nb_frame);
-	uninstall(nb_frame);
-
 	size_t	i = 0;
 	size_t	speed = 200000;
 	if (ac == 3)
@@ -86,6 +77,20 @@ int	main(int ac, char **av)
 		i %= nb_frame;
 		usleep(speed);
 	}
+}
+
+int	main(int ac, char **av)
+{
+	if ((ac != 2 && ac != 3) || !valid_args(av[1]))
+		return (return_error());
+
+	std::string	file(av[1]);
+	size_t	nb_frame = count_frame(file);
+
+	stock_frame(file, nb_frame);
+	uninstall(nb_frame);
+	print_flipnote(nb_frame, ac, av);
+
 	return (0);
 }
 
