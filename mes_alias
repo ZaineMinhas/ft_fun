@@ -1,0 +1,19 @@
+alias aliass="vim ~"
+alias 1="clear && git status"
+alias 2="git add ."
+alias 3="git commit -m"
+alias 5="git push"
+alias 9="clear && git status && git add . && git status && git commit -m 'GROS COMMIT POUR GROS PUSH' && git push"
+alias gac="clear && git add . && git status && git commit -m"
+
+alias 4="clear && make && make clean"
+alias 6="clear && make fclean"
+
+alias c="gcc -Wall -Wextra -Werror"
+alias c+="c++ -Wall -Wextra -Werror"
+
+alias n="clear && norminette"
+
+alias =""
+alias =""
+alias =""
