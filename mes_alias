@@ -1,4 +1,6 @@
-alias aliass="vim ~"
+alias aliass="vim ~/.zshrc"
+alias vimaliass="vim ~/.vimrc"
+
 alias 1="clear && git status"
 alias 2="git add ."
 alias 3="git commit -m"
@@ -14,6 +16,6 @@ alias c+="c++ -Wall -Wextra -Werror"
 
 alias n="clear && norminette"
 
-alias =""
-alias =""
-alias =""
+alias UwU="curl parrot.live"
+alias meteo="curl wttr.in/BRUSSELS"
+alias moon="curl wttr.in/moon"
