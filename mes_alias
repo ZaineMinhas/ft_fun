@@ -1,21 +1,25 @@
 alias aliass="vim ~/.zshrc"
 alias vimaliass="vim ~/.vimrc"
+alias act3="exec zsh"
+alias set_env="export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Users/zminhas/scripts"
 
+alias gac="clear && git add --a && git status && git commit -m"
 alias 1="clear && git status"
-alias 2="git add ."
+alias 2="git add --a"
 alias 3="git commit -m"
 alias 5="git push"
-alias 9="clear && git status && git add . && git status && git commit -m 'GROS COMMIT POUR GROS PUSH' && git push"
-alias gac="clear && git add . && git status && git commit -m"
+alias 9="git status && git add --a && git status && git commit -m 'GROS COMMIT POUR GROS PUSH' && git push"
 
+alias c="gcc -Wall -Wextra -Werror"
+alias n="clear && norminette -R CheckForbiddenSourceHeader"
+alias nods="find . -name .DS_Store -type f -delete"
 alias 4="clear && make && make clean"
 alias 6="clear && make fclean"
 
-alias c="gcc -Wall -Wextra -Werror"
-alias c+="c++ -Wall -Wextra -Werror"
-
-alias n="clear && norminette"
-
-alias UwU="curl parrot.live"
 alias meteo="curl wttr.in/BRUSSELS"
 alias moon="curl wttr.in/moon"
+alias UwU="curl parrot.live"
+
+alias clear_cache="rm -rf ~/Library/Caches/*"
+alias slack_clear="rm -rf ~/Library/**.42_cache_bak*; rm -rf ~/**.42_cache_bak; brew cleanup"
+alias cclean="clear ; bash ~/Cleaner_42.sh"
