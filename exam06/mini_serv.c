@@ -13,24 +13,8 @@ typedef struct	s_client {
 	struct s_client	*next;
 }				t_client;
 
-int			sockfd;
-int			max_fd;
-int			g_id;
 t_client	*clients, *tmp;
-
-void	send_all(t_client *clients, char *str, int fd)
-{
-	size_t	len;
-
-	len = strlen(str);
-	while (clients)
-	{
-		if (clients->fd != fd)
-			send(clients->fd, str, len, 0);
-		clients = clients->next;
-	}
-	write(1, str, len);
-}
+int			sockfd, max_fd, g_id;
 
 int	extract_message(char **buf, char **msg)
 {
@@ -79,20 +63,6 @@ char	*str_join(char *buf, char *add)
 	return (newbuf);
 }
 
-void	init_fdset(fd_set *set_read, t_client *clients)
-{
-	FD_ZERO(set_read);
-	max_fd = sockfd;
-	while (clients)
-	{
-		FD_SET(clients->fd, set_read);
-		if (max_fd < clients->fd)
-			max_fd = clients->fd;
-		clients = clients->next;
-	}
-	FD_SET(sockfd, set_read);
-}
-
 void	fatal(int nb) {
 	if (nb >= 1)
 		close(sockfd);
@@ -116,6 +86,34 @@ void	clear_clients(t_client *clients)
 	
 }
 
+void	init_fdset(fd_set *set_read, t_client *clients)
+{
+	FD_ZERO(set_read);
+	max_fd = sockfd;
+	while (clients)
+	{
+		FD_SET(clients->fd, set_read);
+		if (max_fd < clients->fd)
+			max_fd = clients->fd;
+		clients = clients->next;
+	}
+	FD_SET(sockfd, set_read);
+}
+
+void	send_all(t_client *clients, char *str, int fd)
+{
+	size_t	len;
+
+	len = strlen(str);
+	while (clients)
+	{
+		if (clients->fd != fd)
+			send(clients->fd, str, len, 0);
+		clients = clients->next;
+	}
+	write(1, str, len);
+}
+
 int	add_client(t_client **clients, int fd)
 {
 	t_client	*new;
@@ -131,8 +129,7 @@ int	add_client(t_client **clients, int fd)
 	new->next = NULL;
 	if (!(*clients))
 		(*clients) = new;
-	else
-	{
+	else {
 		tmp = (*clients);
 		while (tmp->next)
 			tmp = tmp->next;
@@ -165,8 +162,8 @@ int	remove_client(t_client **clients, int fd)
 		}
 		if (tmp) {
 			prev->next = tmp->next;
-			close(tmp->fd);
 			id = tmp->id;
+			close(tmp->fd);
 			free(tmp);
 		}
 	}
@@ -241,9 +238,7 @@ int	main(int ac, char **av) {
 					if (FD_ISSET(connfd, &set_read)) {
 						size = recv(connfd, buff, 4096, 0);
 						if (!size) {
-							printf("yoyo\n");
 							id = remove_client(&clients, connfd);
-							printf("yoyoyo\n");
 							if (id != -1) {
 								sprintf(str, "server: client %d just left\n", id);
 								send_all(clients, str, connfd);
